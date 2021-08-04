@@ -1,0 +1,26 @@
+{
+  "name": "depverse",
+  "version": "1.0.0",
+  "description": "Dependency injection made with typescript decorators and classes in mind",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-bednar/depverse.git"
+  },
+  "keywords": [
+    "injector",
+    "dependencies",
+    "manager",
+    "injection",
+    "deps"
+  ],
+  "author": "Martin Bednář",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-bednar/depverse/issues"
+  },
+  "homepage": "https://github.com/m-bednar/depverse#readme"
+}
