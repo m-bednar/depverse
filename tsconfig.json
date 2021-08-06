@@ -34,5 +34,8 @@
     "include": [
         "src/**/*.ts",
         "test/**/*.test.ts"
+    ],
+    "exclude": [
+        "mod.ts"
     ]
 }
