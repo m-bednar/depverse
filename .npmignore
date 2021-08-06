@@ -1,0 +1,8 @@
+# Source folder
+src
+
+# Config files
+tsconfig.json
+.editorconfig
+.prettierrc
+
