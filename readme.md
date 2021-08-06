@@ -156,10 +156,13 @@ class HttpApiCaller {
 
 }
 
-// Then when used in tests:
+```
+
+**Then when used in tests:**
+```typescript
 
 const httpApiCaller = Injector.constructWithMocks(HttpApiCaller);
-httpApiCaller.getAllDogs();                     // Calls HttpServiceMock instead of real-world HttpService
+httpApiCaller.getAllDogs();                     // Calls HttpServiceMock instead of HttpService
 
 // OR
 
