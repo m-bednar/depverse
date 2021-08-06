@@ -10,7 +10,7 @@ import { Class } from '../types/Class';
 export function Inject(typeAlias?: Class) {
     return (target: Record<PropertyKey, any>, key: string) => {
         const propType = typeAlias ?? Reflect.getMetadata('design:type', target, key);
-        const metadata = Reflect.getMetadata(MetadataKeys.Inject, target.constructor) || [];
+        const metadata = Reflect.getMetadata(MetadataKeys.Inject, target.constructor) ?? [];
         metadata.push({ key, propType });
         Reflect.defineMetadata(MetadataKeys.Inject, metadata, target.constructor);
     }

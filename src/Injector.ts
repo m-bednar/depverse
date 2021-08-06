@@ -1,4 +1,8 @@
+import { InjectableMissingError } from './errors/InjectableMissingError';
+import { UninjectableTypeError } from './errors/UninjectableTypeError';
+import { MetadataKeys } from './MetadataKeys';
 import { Class } from './types/Class';
+import { Instance } from './types/Instance';
 
 export class Injector {
 
@@ -13,7 +17,9 @@ export class Injector {
      * @returns Instance of passed class with all dependencies injected.
      */
     public construct<T>(cls: Class<T>, ...constructorArgs: any): T {
-        return new cls(...constructorArgs);
+        const instance: any = new cls(...constructorArgs);
+        this.inject(instance);
+        return instance;
     }
 
     /**
@@ -21,9 +27,18 @@ export class Injector {
      * @param instance Instance, where dependencies will be injected.
      * @returns Same instance as passed, but with injected dependencies.
      */
-    public inject<T>(instance: T): T {
-        const blacklistedTypes = ['Object', 'Function', 'String', 'Number', 'Symbol', 'BigInt'];
-        return instance;
+    public inject<T extends Instance>(instance: T) {
+        const uninjectableTypes = ['Object', 'Function', 'String', 'Number', 'Symbol', 'BigInt'];
+        const metadata: any[] = Reflect.getMetadata(MetadataKeys.Inject, instance.constructor) ?? [];
+        for (const { key, propType } of metadata) {
+            if (uninjectableTypes.includes(propType)) {
+                throw new UninjectableTypeError(instance.constructor, propType);
+            }
+            if (!this.injectables.has(propType)) {
+                throw new InjectableMissingError(instance.constructor, propType);
+            }
+            instance[key] = this.injectables.get(propType)
+        }
     }
 
     public addInjectable<T>(cls: Class<T>) {

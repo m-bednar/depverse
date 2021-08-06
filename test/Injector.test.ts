@@ -1,31 +1,33 @@
 import { expect } from 'chai';
 import { Inject, Injectable, Injector } from '../src';
-
-class Dep1 {
-    public x = 0;
-}
-
-class Dep2 {
-    public y = '';
-}
-
-function makeClass() {
-    class Cls {
-        constructor(public readonly arg?: number) {}
-
-        @Inject()
-        public dep1!: Dep1;
-
-        @Inject()
-        public dep2!: Dep2;
-
-        @Inject()
-        public dep1Twin!: Dep1;
-    }
-    return Cls;
-}
+import { Instance } from '../src/types/Instance';
 
 describe('Injector', () => {
+
+    class Dep1 {
+        public x = 0;
+    }
+    
+    class Dep2 {
+        public y = '';
+    }
+    
+    function makeClass() {
+        class Cls {
+            constructor(public readonly arg?: number) {}
+    
+            @Inject()
+            public dep1!: Dep1;
+    
+            @Inject()
+            public dep2!: Dep2;
+    
+            @Inject()
+            public dep1Twin!: Dep1;
+        }
+        return Cls;
+    }
+
     describe('construct()', () => {
 
         let injector: Injector;
@@ -34,9 +36,8 @@ describe('Injector', () => {
 
             beforeEach(() => {
                 injector = new Injector();
-                // Apply Injectable decorators manually
-                Injectable(injector)(Dep1);
-                Injectable(injector)(Dep2);
+                Injectable(injector)(Dep1); // Apply Injectable decorator manually
+                Injectable(injector)(Dep2); // Apply Injectable decorator manually
             });
 
             it('should return instance with all injected dependencies', () => {
@@ -58,8 +59,7 @@ describe('Injector', () => {
 
             beforeEach(() => {
                 injector = new Injector();
-                // Apply Injectable decorator only on Dep1
-                Injectable(injector)(Dep1);
+                Injectable(injector)(Dep1); // Apply Injectable decorator only on Dep1
             });
 
             it('should throw dependency error', () => {
@@ -71,20 +71,41 @@ describe('Injector', () => {
     });
 
     describe('inject()', () => {
+        
+        let injector: Injector;
+
         context('when all dependencies exists', () => {
-            it('should inject all dependencies', () => {
-                throw Error('Not implemented');
+
+            beforeEach(() => {
+                injector = new Injector();
+                Injectable(injector)(Dep1);  // Apply Injectable decorator manually
+                Injectable(injector)(Dep2);  // Apply Injectable decorator manually
             });
 
-            it('should return same instance as passed', () => {
-                throw Error('Not implemented');
+            it('should inject all dependencies', () => {
+                const cls = makeClass();
+                const instance: any = new cls();
+                injector.inject(instance);
+                expect(instance.dep1).to.be.an('object').and.an.instanceOf(Dep1);
+                expect(instance.dep2).to.be.an('object').and.an.instanceOf(Dep2);
+                expect(instance.dep1Twin).to.be.an('object').and.an.instanceOf(Dep1);
             });
+
         });
 
         context('when dependency is missing', () => {
-            it('should throw dependency error', () => {
-                throw Error('Not implemented');
+
+            beforeEach(() => {
+                injector = new Injector();
+                Injectable(injector)(Dep1); // Apply Injectable decorator only on Dep1
             });
+
+            it('should throw dependency error', () => {
+                const cls = makeClass();
+                const instance: any = new cls();
+                expect(injector.inject.bind(injector, instance)).to.throw();
+            });
+
         });
     });
 });
