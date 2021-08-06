@@ -2,7 +2,9 @@ import { Class } from './types/Class';
 
 export class Injector {
 
-    public static readonly instance = new Injector();
+    public static readonly default = new Injector();
+
+    private readonly injectables = new Map<Class, any>();
 
     /**
      * Constructs new instance from given class with all dependencies already injected.
@@ -22,6 +24,22 @@ export class Injector {
     public inject<T>(instance: T): T {
         const blacklistedTypes = ['Object', 'Function', 'String', 'Number', 'Symbol', 'BigInt'];
         return instance;
+    }
+
+    public addInjectable<T>(cls: Class<T>) {
+        if (this.injectables.has(cls)) {
+            throw Error(`Class ${cls.name} already added as injectable.`);
+        }
+        const instance = this.construct(cls);
+        this.injectables.set(cls, instance);
+    }
+
+    public getAllInjectables() {
+        return [ ...this.injectables.keys() ];
+    }
+
+    public clearAllInjectables() {
+        this.injectables.clear();
     }
     
 }
