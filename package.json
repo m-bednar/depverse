@@ -1,37 +1,37 @@
 {
-   "name": "depverse",
-   "version": "1.0.0",
-   "description": "Dependency injection made with typescript decorators and classes in mind",
-   "main": "dist/index.js",
-   "scripts": {
-      "test": "mocha -r ts-node/register test/**/*.test.ts"
-   },
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/m-bednar/depverse.git"
-   },
-   "keywords": [
-      "injector",
-      "dependencies",
-      "manager",
-      "injection",
-      "deps"
-   ],
-   "author": "Martin Bednář",
-   "license": "ISC",
-   "bugs": {
-      "url": "https://github.com/m-bednar/depverse/issues"
-   },
-   "homepage": "https://github.com/m-bednar/depverse#readme",
-   "devDependencies": {
-      "@types/chai": "^4.2.21",
-      "@types/mocha": "^9.0.0",
-      "chai": "^4.3.4",
-      "mocha": "^9.0.3",
-      "ts-node": "^10.1.0",
-      "typescript": "^4.3.5"
-   },
-   "dependencies": {
-      "reflect-metadata": "^0.1.13"
-   }
+    "name": "depverse",
+    "version": "1.0.0",
+    "description": "Dependency injection made with typescript decorators and classes in mind",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "mocha -r ts-node/register test/**/*.test.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/m-bednar/depverse.git"
+    },
+    "keywords": [
+        "injector",
+        "dependencies",
+        "manager",
+        "injection",
+        "deps"
+    ],
+    "author": "Martin Bednář",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/m-bednar/depverse/issues"
+    },
+    "homepage": "https://github.com/m-bednar/depverse#readme",
+    "devDependencies": {
+        "@types/chai": "^4.2.21",
+        "@types/mocha": "^9.0.0",
+        "chai": "^4.3.4",
+        "mocha": "^9.0.3",
+        "ts-node": "^10.1.0",
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "reflect-metadata": "^0.1.13"
+    }
 }
