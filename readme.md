@@ -3,8 +3,9 @@
 
 Deprverse is simple to use and efficient dependency injection manager, that is mainly focused to provide decorator-style dependency injection, but also provides way to inject dependecies in classic functional programming.
 
-**Published as:**  
-[npm package 📦](https://www.npmjs.com/package/depverse)
+**Published as:**
+- [Deno module 🦕](https://deno.land/x/depverse)
+- [npm package 📦](https://www.npmjs.com/package/depverse)
 
 ## Advantages of Depverse
 
