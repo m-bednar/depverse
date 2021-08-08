@@ -1,6 +1,9 @@
 
 # Depverse Dependency Injector 💉
 
+[![npm version](https://badge.fury.io/js/depverse.svg)](https://badge.fury.io/js/depverse)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+
 Deprverse is simple to use and efficient dependency injection manager, that is mainly focused to provide decorator-style dependency injection, but also provides way to inject dependecies in classic functional programming.
 
 **Published as:**
