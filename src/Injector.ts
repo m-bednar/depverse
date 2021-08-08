@@ -92,8 +92,16 @@ export class Injector {
         return [ ...this.injectables.keys() ];
     }
 
+    public getAllInjectableMocks() {
+        return [ ...this.mocks.keys() ];
+    }
+
     public clearAllInjectables() {
         this.injectables.clear();
+    }
+
+    public clearAllInjectableMocks() {
+        this.mocks.clear();
     }
     
 }
