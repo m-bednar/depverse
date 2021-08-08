@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Injectable, Injector } from '../../src';
+import { Injector } from '../../src';
 import { InjectableMock } from '../../src/decorators/InjectableMock';
 
 describe('InjectableMock', () => {
