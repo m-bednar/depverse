@@ -81,7 +81,7 @@ export class Injector {
     }
 
     public addInjectableMock<T extends object>(mockedCls: Class<T>, cls: Class<T>) {
-        if (this.mocks.has(cls)) {
+        if (this.mocks.has(mockedCls)) {
             throw Error(`Class ${cls.name} already added as injectable mock.`);
         }
         const instance = this.construct(cls);
