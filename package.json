@@ -13,11 +13,12 @@
         "url": "git+https://github.com/m-bednar/depverse.git"
     },
     "keywords": [
+        "dependency injection",
+        "inversion of control",
+        "mock injection",
         "injector",
         "dependencies",
-        "manager",
-        "injection",
-        "deps"
+        "typescript"
     ],
     "author": "Martin Bednář",
     "license": "ISC",
