@@ -154,8 +154,8 @@ class HttpServiceMock {
 @AutoInject()
 class HttpApiCaller {
 
-    @Inject(HttpService)
-    private httpService!: IHttpService; // Hides implementing type
+    @Inject()
+    private httpService!: HttpService;
 
     public getAllDogs() {
         return this.httpService.get('/api/dogs');
