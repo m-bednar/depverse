@@ -8,10 +8,14 @@ import { Class } from '../types/Class';
  */
 export function AutoInject(injector: Injector = Injector.default) {
     return (target: Class) => {
-        function autoInjectConstructor(...args: any) {
-            return injector.construct(target, ...args);
+        let constructingMethod = injector.construct.bind(injector);
+        if (process.env.USE_INJECTABLE_MOCKS === 'true') {
+            constructingMethod = injector.constructWithMocks.bind(injector);
         }
-        autoInjectConstructor.prototype = target.prototype ;
+        function autoInjectConstructor(...args: any) {
+            return constructingMethod(target, ...args);
+        }
+        autoInjectConstructor.prototype = target.prototype;
         return <any>autoInjectConstructor;
     }
 }

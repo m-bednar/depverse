@@ -172,7 +172,7 @@ httpApiCaller.getAllDogs();                     // Calls HttpServiceMock instead
 
 // OR
 
-process.env.USE_INJECTABLE_MOCKS = true;        // Do only once in each of your tests file
+process.env.USE_INJECTABLE_MOCKS = 'true';      // Do only once in each of your tests file
 const httpApiCaller = new HttpApiCaller();
 httpApiCaller.getAllDogs();                     // Calls HttpServiceMock 
 
